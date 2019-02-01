@@ -7,7 +7,5 @@
                                                    android:layout_height="match_parent"
                                                    tools:context=".MainActivity$WildfyreFragment">
 
-<androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
-                                           android:layout_height="match_parent"
-android:id="@+id/wildcardlist" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
