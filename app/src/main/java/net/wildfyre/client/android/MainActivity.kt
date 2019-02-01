@@ -1,7 +1,10 @@
 package net.wildfyre.client.android
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -10,10 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 import net.wildfyre.api.WildFyre
-import net.wildfyre.areas.*
-import net.wildfyre.posts.*
+import net.wildfyre.users.*
+import kotlin.concurrent.thread
+
+fun getAuthSPName()="auth"
+fun getAuthSPKey()="authToken"
 
 class MainActivity : AppCompatActivity() {
+
+
+    private var me: LoggedUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +39,17 @@ class MainActivity : AppCompatActivity() {
         helper.attachToRecyclerView(wildcardlist)
 
 
-        // Test code
+        val sharedPreferences = getSharedPreferences(getAuthSPName(), Context.MODE_PRIVATE)
+        val authToken = sharedPreferences.getString(getAuthSPKey(), "")
+        if (authToken == "") {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        } else {
+            thread(start = true) {
+                me = WildFyre.connect(authToken)
+            }.join()
+        }
+        Log.e("WildFyre", me.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

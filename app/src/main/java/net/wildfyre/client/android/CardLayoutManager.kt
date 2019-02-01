@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.wildcard.view.*
 
-class CardAdapter() : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
+class CardAdapter : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
     private var context: Context? = null
 
     override fun getItemCount(): Int {return 1} //We only have one card per page
@@ -20,15 +20,12 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
-        var layoutInflater = LayoutInflater.from(context)
-        var cardView = layoutInflater.inflate(R.layout.wildcard, parent, false)
+        val layoutInflater = LayoutInflater.from(context)
+        val cardView = layoutInflater.inflate(R.layout.wildcard, parent, false)
         return ViewHolder(cardView)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var text: TextView
-        init {
-            text = itemView.section_label
-        }
+        var text: TextView = itemView.section_label
     }
 }
