@@ -1,6 +1,7 @@
 package net.wildfyre.client.android
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,14 @@ import kotlinx.android.synthetic.main.wildcard.view.*
 class CardAdapter : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
     private var context: Context? = null
 
-    override fun getItemCount(): Int {return 1} //We only have one card per page
+    override fun getItemCount(): Int {
+        return 1 //We only have one card per page
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         assert(position == 0)
-        holder.text.text = /*context?.getString(R.string.)*/""
+        Log.e("WildFyre", "bind view holder")
+        holder.text.text = /*context?.getString(R.string.)*/"test"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,6 +30,6 @@ class CardAdapter : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var text: TextView = itemView.section_label
+        var text: TextView = itemView.text
     }
 }

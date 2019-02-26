@@ -15,4 +15,7 @@
     <string name="error_incorrect_password">The username/password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="loading_author">Loading Author…</string>
+    <string name="loading_comment">Loading Comment…</string>
+    <string name="comment_avatar">User Avatar</string>
 </resources>

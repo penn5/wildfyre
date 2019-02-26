@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -16,8 +17,8 @@ import net.wildfyre.api.WildFyre
 import net.wildfyre.users.*
 import kotlin.concurrent.thread
 
-fun getAuthSPName()="auth"
-fun getAuthSPKey()="authToken"
+fun getAuthSPName() = "auth"
+fun getAuthSPKey() = "authToken"
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         val helper = ItemTouchHelper(CardSwipeCallback(this, wildcardlist))
         helper.attachToRecyclerView(wildcardlist)
 
-
         val sharedPreferences = getSharedPreferences(getAuthSPName(), Context.MODE_PRIVATE)
         val authToken = sharedPreferences.getString(getAuthSPKey(), "")
         if (authToken == "") {
@@ -47,7 +47,15 @@ class MainActivity : AppCompatActivity() {
         } else {
             thread(start = true) {
                 me = WildFyre.connect(authToken)
-            }.join()
+                onMeLoaded()
+            }
+        }
+    }
+
+    private fun onMeLoaded() {
+        runOnUiThread {
+            loading_bar.visibility = View.GONE
+            main_content.visibility = View.VISIBLE
         }
         Log.e("WildFyre", me.toString())
     }
