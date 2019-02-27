@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+layout_weight in % for ease
+-->
+
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/wildcard">
-
-    <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
+        android:id="@+id/wildcard"
+        android:clipChildren="false" android:clipToPadding="false">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/portrait_meme"
+                android:id="@+id/image" android:adjustViewBounds="true" android:contentDescription="@string/post_image_description_default"/>
+        <TextView
+                android:text="@string/loading_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/caption"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

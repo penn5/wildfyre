@@ -17,5 +17,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="loading_author">Loading Author…</string>
     <string name="loading_comment">Loading Comment…</string>
+    <string name="loading_post">Loading Post…</string>
     <string name="comment_avatar">User Avatar</string>
+    <string name="post_image_description_default">Post Image</string>
 </resources>
