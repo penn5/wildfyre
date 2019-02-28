@@ -8,24 +8,70 @@ layout_weight in % for ease
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/wildcard"
-        android:clipChildren="false" android:clipToPadding="false">
+        android:padding="@dimen/cardview_padding">
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical">
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" android:padding="@dimen/cardview_padding">
         <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/portrait_meme"
-                android:id="@+id/image" android:adjustViewBounds="true" android:contentDescription="@string/post_image_description_default"/>
-        <TextView
-                android:text="@string/loading_post"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/caption"/>
+                android:layout_height="wrap_content"
+                tools:srcCompat="@drawable/test_meme"
+                android:id="@+id/image"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/post_image_description_default"/>
+
+
+        <androidx.cardview.widget.CardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:cardBackgroundColor="@color/colorAccent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:padding="@dimen/cardview_padding">
+
+                <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:id="@+id/post_avatar"
+                        app:layout_constraintHeight_percent="90"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:contentDescription="@string/user_avatar" android:scaleType="centerInside"
+                        app:srcCompat="@drawable/default_avatar" app:layout_constraintStart_toStartOf="parent"/>
+                <Space android:layout_width="20dp" android:layout_height="0dp"
+                       app:layout_constraintStart_toEndOf="@+id/post_avatar" android:id="@+id/spacer"
+                       app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                          app:layout_constraintTop_toTopOf="parent"
+                          android:text="@string/loading_author" android:id="@+id/post_author"
+                          app:layout_constraintVertical_chainStyle="packed"
+                          app:layout_constraintStart_toEndOf="@+id/spacer"
+                          app:layout_constraintEnd_toStartOf="@+id/end_spacer"
+                          android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
+                <TextView
+                        android:text="@string/loading_post"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" android:id="@+id/post_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/post_author"
+                        app:layout_constraintStart_toEndOf="@+id/spacer"
+                        app:layout_constraintEnd_toStartOf="@+id/end_spacer"/>
+                <Space
+                        android:layout_width="5dp"
+                        android:layout_height="0dp" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                        android:id="@+id/end_spacer"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content" android:id="@+id/comments"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
